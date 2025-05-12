@@ -1,8 +1,11 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
 public class Journal
 {
-    public List<Entry> _journal = new List<Entry>();
+    private List<Entry> _journal = new List<Entry>();
 
     public void AddEntry(Entry entry)
     {
@@ -19,27 +22,20 @@ public class Journal
 
     public void SaveToFile(string filename)
     {
-        using (StreamWriter outputFile = new StreamWriter(filename))
-        {
-            foreach (Entry entry in _journal)
-            {
-                outputFile.WriteLine($"{entry._date}|{entry._prompt}|{entry._response}");
-            }
-        }
+        string jsonString = JsonSerializer.Serialize(_journal, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(filename, jsonString);
     }
 
     public void LoadFromFile(string filename)
     {
-        string[] lines = File.ReadAllLines(filename);
-
-        foreach (string line in lines)
+        if (File.Exists(filename))
         {
-            string[] parts = line.Split("|");
-            string prompt = parts[1];
-            string response = parts[2];
-            string date = parts[0];
-            Entry entry = new Entry(prompt, response, date);
-            _journal.Add(entry);
+            string jsonString = File.ReadAllText(filename);
+            _journal = JsonSerializer.Deserialize<List<Entry>>(jsonString) ?? new List<Entry>();
+        }
+        else
+        {
+            Console.WriteLine("File not found.");
         }
     }
 }
