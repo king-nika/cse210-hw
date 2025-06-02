@@ -22,21 +22,15 @@ class Program
             {
                 case "1":
                     BreathingActivity breathingActivity = new BreathingActivity();
-                    breathingActivity.DisplayStartMessage();
                     breathingActivity.Run();
-                    breathingActivity.DisplayEndMessage();
                     break;
                 case "2":
                     ReflectingActivity reflectingActivity = new ReflectingActivity();
-                    reflectingActivity.DisplayStartMessage();
                     reflectingActivity.Run();
-                    reflectingActivity.DisplayEndMessage();
                     break;
                 case "3":
                     ListingActivity listingActivity = new ListingActivity();
-                    listingActivity.DisplayStartMessage();
                     listingActivity.Run();
-                    listingActivity.DisplayEndMessage();
                     break;
                 case "q":
                     Console.WriteLine("Thank you for using the Mindfulness Program. Goodbye!");

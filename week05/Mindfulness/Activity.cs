@@ -10,7 +10,7 @@ public class Activity
         _description = description;
     }
 
-    public void DisplayStartMessage()
+    protected void DisplayStartMessage()
     {
         Console.Clear();
 
@@ -20,7 +20,7 @@ public class Activity
         _duration = int.Parse(Console.ReadLine());
     }
 
-    public void DisplayEndMessage()
+    protected void DisplayEndMessage()
     {
         Console.WriteLine("Well done!");
         Console.WriteLine($"Thank you for participating in the {_name}!");
@@ -29,7 +29,7 @@ public class Activity
         Console.WriteLine($"You completed the activity in {_duration} seconds.");
     }
 
-    public void ShowSpinner(int seconds)
+    protected void ShowSpinner(int seconds)
     {
         List<string> spinner = new List<string> { "|", "/", "-", "\\" };
         int spinnerIndex = 0;
@@ -44,7 +44,7 @@ public class Activity
         }
     }
 
-    public void ShowCountdown(int seconds)
+    protected void ShowCountdown(int seconds)
     {
         for (int i = seconds; i > 0; i--)
         {

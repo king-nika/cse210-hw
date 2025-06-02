@@ -26,6 +26,8 @@ public class ReflectingActivity : Activity
 
     public void Run()
     {
+        DisplayStartMessage();
+
         Console.Clear();
         Console.WriteLine("Get ready to begin...");
         ShowSpinner(3);
@@ -33,16 +35,18 @@ public class ReflectingActivity : Activity
         DisplayPrompt();
 
         DisplayQuestions();
+
+        DisplayEndMessage();
     }
 
-    public string GetRandomPrompt()
+    private string GetRandomPrompt()
     {
         Random random = new Random();
         int index = random.Next(_prompts.Count);
         return _prompts[index];
     }
 
-    public string GetRandomQuestion()
+    private string GetRandomQuestion()
     {
         List<int> gottenPrompts = new List<int>();
 
@@ -56,7 +60,7 @@ public class ReflectingActivity : Activity
         return _questions[index];
     }
 
-    public void DisplayPrompt()
+    private void DisplayPrompt()
     {
         Console.WriteLine("Consider the following prompt:");
         Console.WriteLine($"--- {GetRandomPrompt()} ---");
@@ -67,7 +71,7 @@ public class ReflectingActivity : Activity
         ShowCountdown(5);
     }
 
-    public void DisplayQuestions()
+    private void DisplayQuestions()
     {
         Console.Clear();
 
