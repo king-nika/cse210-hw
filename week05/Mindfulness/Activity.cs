@@ -22,7 +22,8 @@ public class Activity
 
     public void DisplayEndMessage()
     {
-        Console.WriteLine($"Thank you for participating in the {_name}!\n");
+        Console.WriteLine("Well done!");
+        Console.WriteLine($"Thank you for participating in the {_name}!");
         ShowSpinner(3);
 
         Console.WriteLine($"You completed the activity in {_duration} seconds.");
@@ -37,15 +38,14 @@ public class Activity
         while (DateTime.Now < endTime)
         {
             Console.Write(spinner[spinnerIndex]);
-            Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
             spinnerIndex = (spinnerIndex + 1) % spinner.Count;
             Thread.Sleep(250);
+            Console.Write("\b \b");
         }
     }
 
     public void ShowCountdown(int seconds)
     {
-        DateTime endTime = DateTime.Now.AddSeconds(seconds);
         for (int i = seconds; i > 0; i--)
         {
             Console.Write(i);

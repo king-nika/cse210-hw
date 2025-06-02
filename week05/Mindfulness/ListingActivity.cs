@@ -16,7 +16,8 @@ public class ListingActivity : Activity
     };
 
     public void Run()
-    { }
+    {
+    }
 
     public string GetRandomPrompt()
     {
