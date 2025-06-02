@@ -37,6 +37,9 @@ public class ReflectingActivity : Activity
         DisplayQuestions();
 
         DisplayEndMessage();
+
+        Logger.DisplayReflectingLog();
+        ShowSpinner(10);
     }
 
     private string GetRandomPrompt()

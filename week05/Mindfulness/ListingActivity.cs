@@ -40,6 +40,9 @@ public class ListingActivity : Activity
         Console.WriteLine($"\nYou listed {_count} items.");
 
         DisplayEndMessage();
+
+        Logger.DisplayListingLog();
+        ShowSpinner(10);
     }
 
     private string GetRandomPrompt()

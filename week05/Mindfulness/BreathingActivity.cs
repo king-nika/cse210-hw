@@ -20,5 +20,7 @@ public class BreathingActivity : Activity
         }
 
         DisplayEndMessage();
+        Logger.DisplayBreathingLog();
+        ShowSpinner(10);
     }
 }

@@ -26,6 +26,7 @@ public class Activity
         Console.WriteLine($"Thank you for participating in the {_name}!");
         ShowSpinner(3);
 
+        Logger.LogActivity(_name, _duration);
         Console.WriteLine($"You completed the activity in {_duration} seconds.");
     }
 
