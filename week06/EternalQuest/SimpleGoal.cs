@@ -11,16 +11,16 @@ public class SimpleGoal : Goal
 
     public override bool IsComplete()
     {
-        return false;
+        return _isComplete;
+    }
+
+    public void MarkComplete()
+    {
+        _isComplete = true;
     }
 
     public override string GetStringRepresentation()
     {
-        return "";
-    }
-
-    public override string GetDetailsString()
-    {
-        return "";
+        return "SimpleGoal";
     }
 }

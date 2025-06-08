@@ -11,11 +11,6 @@ public class EternalGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return "";
-    }
-
-    public override string GetDetailsString()
-    {
-        return "";
+        return "EternalGoal";
     }
 }

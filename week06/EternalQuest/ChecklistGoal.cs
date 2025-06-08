@@ -15,16 +15,16 @@ public class ChecklistGoal : Goal
 
     public override bool IsComplete()
     {
-        return false;
+        return _amountCompleted >= _target;
     }
 
     public override string GetStringRepresentation()
     {
-        return "";
+        return "ChecklistGoal";
     }
 
     public override string GetDetailsString()
     {
-        return "";
+        return $"{_shortName} : {_description} ({_amountCompleted}/{_target})";
     }
 }
