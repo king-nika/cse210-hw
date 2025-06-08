@@ -61,7 +61,10 @@ public class GoalManager
         for (int i = 0; i < _goals.Count; i++)
         {
             Goal goal = _goals[i];
+
+            Console.ForegroundColor = goal.IsComplete() ? ConsoleColor.Green : ConsoleColor.Yellow;
             Console.WriteLine($"{i + 1}. [{(goal.IsComplete() ? "X" : " ")}] {goal.GetDetailsString()}");
+            Console.ResetColor();
         }
     }
 
