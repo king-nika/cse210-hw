@@ -134,7 +134,66 @@ public class GoalManager
         }
     }
 
-    private void SaveGoals() { }
+    private void SaveGoals()
+    {
+        Console.Write("\nPlease enter a filename to save the goals: ");
+        string filename = Console.ReadLine();
 
-    private void LoadGoals() { }
+        if (!filename.EndsWith(".txt")) filename += ".txt";
+
+        using (StreamWriter writer = new StreamWriter(filename))
+        {
+            writer.WriteLine(_score);
+
+            foreach (Goal goal in _goals)
+            {
+                writer.WriteLine(goal.GetStringRepresentation());
+            }
+        }
+
+        Console.WriteLine($"Goals saved successfully to {filename}!");
+    }
+
+    private void LoadGoals()
+    {
+        Console.Write("\nPlease enter a filename to load the goals: ");
+        string filename = Console.ReadLine();
+
+        if (!filename.EndsWith(".txt")) filename += ".txt";
+
+        if (!File.Exists(filename))
+        {
+            Console.WriteLine("File not found.");
+            return;
+        }
+
+        string[] lines = File.ReadAllLines(filename);
+        _score = int.Parse(lines[0]);
+        _goals.Clear();
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i];
+            string[] parts = line.Split('|');
+
+            switch (parts[0])
+            {
+                case "Simple":
+                    SimpleGoal goal = new SimpleGoal(parts[1], parts[2], int.Parse(parts[3]));
+
+                    if (bool.Parse(parts[4]))
+                    {
+                        goal.RecordEvent();
+                    }
+                    _goals.Add(goal);
+                    break;
+                case "Eternal":
+                    _goals.Add(new EternalGoal(parts[1], parts[2], int.Parse(parts[3])));
+                    break;
+                case "Checklist":
+                    _goals.Add(new ChecklistGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[5]), int.Parse(parts[6]), int.Parse(parts[4])));
+                    break;
+            }
+        }
+    }
 }
