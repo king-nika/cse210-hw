@@ -7,16 +7,16 @@ public class SimpleGoal : Goal
         _isComplete = false;
     }
 
-    public override void RecordEvent() { }
+    public override void RecordEvent()
+    {
+        _isComplete = true;
+
+        Console.WriteLine($"Congratulations! You have earned {_points} points for {_shortName}!");
+    }
 
     public override bool IsComplete()
     {
         return _isComplete;
-    }
-
-    public void MarkComplete()
-    {
-        _isComplete = true;
     }
 
     public override string GetStringRepresentation()

@@ -33,7 +33,7 @@ public class GoalManager
                     CreateGoal();
                     break;
                 case "2":
-                    ListGoalNames();
+                    ListGoals();
                     break;
                 case "3":
                     SaveGoals();
@@ -55,7 +55,7 @@ public class GoalManager
 
     private void DisplayPlayerInfo() { }
 
-    private void ListGoalNames()
+    private void ListGoals()
     {
         Console.WriteLine("\nYour Goals:");
         for (int i = 0; i < _goals.Count; i++)
@@ -64,8 +64,6 @@ public class GoalManager
             Console.WriteLine($"{i + 1}. [{(goal.IsComplete() ? "X" : " ")}] {goal.GetDetailsString()}");
         }
     }
-
-    private void ListGoalDetails() { }
 
     private void CreateGoal()
     {
@@ -108,7 +106,33 @@ public class GoalManager
         }
     }
 
-    private void RecordEvent() { }
+    private void RecordEvent()
+    {
+        ListGoals();
+        Console.Write("\nWhich goal did you accomplish? ");
+        int index = int.Parse(Console.ReadLine()) - 1;
+
+        if (index >= 0 && index < _goals.Count)
+        {
+            if (!_goals[index].IsComplete())
+            {
+
+                Goal goal = _goals[index];
+                goal.RecordEvent();
+                _score += goal.GetPoints();
+
+                Console.WriteLine($"You now have {_score} points.");
+            }
+            else
+            {
+                Console.WriteLine("This goal has already been completed.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Please select a valid goal.");
+        }
+    }
 
     private void SaveGoals() { }
 

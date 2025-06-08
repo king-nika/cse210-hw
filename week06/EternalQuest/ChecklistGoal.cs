@@ -11,7 +11,17 @@ public class ChecklistGoal : Goal
         _amountCompleted = 0;
     }
 
-    public override void RecordEvent() { }
+    public override void RecordEvent()
+    {
+        _amountCompleted++;
+        if (_amountCompleted == _target)
+        {
+            _amountCompleted = _target;
+            _points += _bonus;
+        }
+
+        Console.WriteLine($"Congratulations! You have earned {_points} points for {_shortName}!");
+    }
 
     public override bool IsComplete()
     {
